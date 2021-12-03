@@ -36,11 +36,9 @@ fun main() {
     fun part1(input: List<String>): Int =
         input.first().foldIndexed(PowerConsumption("", "")) {index, acc, _ ->
             input.partitionBinary(index).let{ (grp0, grp1) ->
-                if (grp0.size > grp1.size) {
-                    PowerConsumption(acc.first + "1", acc.second + "0")
-                } else {
-                    PowerConsumption(acc.first + "0", acc.second + "1")
-                }
+                val firstAddition = if (grp0.size > grp1.size) "1" else "0"
+                val secondAddition = if (grp0.size > grp1.size) "0" else "1"
+                PowerConsumption(acc.first + firstAddition, acc.second + secondAddition)
             }
         }.total()
 
