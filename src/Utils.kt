@@ -13,4 +13,4 @@ fun readInput(name: String) = File("src", "$name.txt").readLines()
 fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
 
 fun String.splitFilterBlanks(delim: String) = split(delim).filter { it != "" }
-un List<String>.toListInts() = map { it.toInt() }
+fun List<String>.toListInts() = map { it.toInt() }
