@@ -5,26 +5,25 @@ fun List<String>.getLanternfish(): Shoal = fold(mutableListOf()) {acc, s ->
     acc
 }
 
-typealias Fish = Int
-fun Fish.newDay(): Pair<Fish, Fish?>{
-    val newVal = this - 1
-    if (newVal < 0) {
-        return Pair(6, 8)
-    }
-    return Pair(newVal, null)
+typealias GroupedShoal = Map<Int, Long>
+fun Shoal.toGroupedShoal(): GroupedShoal = fold(mutableMapOf()) { acc, fish ->
+    acc[fish] = (acc.get(fish) ?: 0L) + 1
+    acc
 }
-typealias Shoal = List<Fish>
-fun Shoal.newDay(): Shoal {
-    val newFish = mutableListOf<Fish>()
-    return map {fish ->
-        val newDay = fish.newDay()
-        newDay.second?.let {
-            newFish.add(it)
+fun GroupedShoal.newDay(): GroupedShoal {
+    val day = mutableMapOf<Int, Long>()
+    map {(k, v) ->
+        var newK = k - 1
+        if(newK < 0) {
+            newK = 6
+            day[8] = v
         }
-        newDay.first
-    } + newFish
+        day[newK] = (day.get(newK) ?: 0L) + v
+    }
+    return day
 }
-fun Shoal.applyDays(numDays: Int): Shoal {
+
+fun GroupedShoal.applyDays(numDays: Int): GroupedShoal {
     var newShoal = this
     for (d in 1..numDays) {
         newShoal = newShoal.newDay()
@@ -32,23 +31,25 @@ fun Shoal.applyDays(numDays: Int): Shoal {
     return newShoal
 }
 
+
+typealias Fish = Int
+typealias Shoal = List<Fish>
+
 fun main() {
     fun part1(input: List<String>) =
-        input.getLanternfish().applyDays(80).size
+        input.getLanternfish().toGroupedShoal().applyDays(80).values.sum()
 
-//    fun part2(input: List<String>): Long =
-//        input.getLanternfish().applyDays(256).fold(0) {acc, _ ->
-//            acc + 1
-//        }
-//
+    fun part2(input: List<String>): Long =
+        input.getLanternfish().toGroupedShoal().applyDays(256).values.sum()
+
     val testInput = readInput("Day06_test")
     val part1Result = part1(testInput)
-    check(part1Result == 5934) { "Expected: 5934 but found $part1Result" }
+    check(part1Result == 5934L) { "Expected: 5934 but found $part1Result" }
 
-//    val part2Result = part2(testInput)
-//    check((part2Result) == 26984457539) { "Expected 26984457539 but is: $part2Result" }
+    val part2Result = part2(testInput)
+    check((part2Result) == 26984457539) { "Expected 26984457539 but is: $part2Result" }
 
     val input = readInput("Day06")
     println("Part1: " + part1(input))
-//    println("Part2: " + part2(input))
+    println("Part2: " + part2(input))
 }
