@@ -1,4 +1,3 @@
-import java.util.*
 import kotlin.math.sign
 
 val VENT_LINE_FORMAT = """^(\d+),(\d+)\s*->\s*(\d+),(\d+)$""".toRegex()
@@ -83,14 +82,14 @@ fun main() {
             .getOverlapPoints()
             .count { it > 1 }
 
-    val testInput = readInput("Day05_test")
+    val testInput = readFileContents("Day05_test")
     val part1Result = part1(testInput)
     check(part1Result == 5) { "Expected: 5 but found $part1Result" }
 
     val part2Result = part2(testInput)
     check((part2Result) == 12) { "Expected 12 but is: $part2Result" }
 
-    val input = readInput("Day05")
+    val input = readFileContents("Day05")
     println("Part1: " + part1(input))
     println("Part2: " + part2(input))
 }

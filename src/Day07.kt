@@ -25,7 +25,7 @@ fun main() {
         getDistanceFrom((getMinMaxRange()).toList(), incrementalInt).minOf { it }
     }
 
-    val testInput = readInput("Day07_test")
+    val testInput = readFileContents("Day07_test")
     val part1Result = part1(testInput)
     println(part1Result)
     check(part1Result == 37) { "Expected: 37 but found $part1Result" }
@@ -33,7 +33,7 @@ fun main() {
     val part2Result = part2(testInput)
     check((part2Result) == 168) { "Expected 168 but is: $part2Result" }
 
-    val input = readInput("Day07")
+    val input = readFileContents("Day07")
     println("Part1: " + part1(input))
     println("Part2: " + part2(input))
 }

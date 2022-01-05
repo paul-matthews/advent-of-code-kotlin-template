@@ -42,14 +42,14 @@ fun main() {
     fun part2(input: List<String>): Long =
         input.getLanternfish().toGroupedShoal().applyDays(256).values.sum()
 
-    val testInput = readInput("Day06_test")
+    val testInput = readFileContents("Day06_test")
     val part1Result = part1(testInput)
     check(part1Result == 5934L) { "Expected: 5934 but found $part1Result" }
 
     val part2Result = part2(testInput)
     check((part2Result) == 26984457539) { "Expected 26984457539 but is: $part2Result" }
 
-    val input = readInput("Day06")
+    val input = readFileContents("Day06")
     println("Part1: " + part1(input))
     println("Part2: " + part2(input))
 }

@@ -51,14 +51,14 @@ fun main() {
 
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day03_test")
+    val testInput = readFileContents("Day03_test")
     val part1Result = part1(testInput)
     check(part1Result == 198) { "Expected: 198 but found $part1Result" }
 
     val part2Result = part2(testInput)
     check(part2Result == 230) { "Expected 230 but is: $part2Result" }
 
-    val input = readInput("Day03")
+    val input = readFileContents("Day03")
     println("Part1: " + part1(input))
     println("Part2: " + part2(input))
 }

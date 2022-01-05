@@ -1,6 +1,8 @@
 
 
 typealias BingoNumbers = List<Int>
+
+fun List<String>.toInts(): List<Int> = map{ it.toInt() }
 fun List<String>.getBingoNumbers(): BingoNumbers = first().split(",").map { it.toInt() }
 
 data class BingoBoard(val raw: RawBingoBoard, val scoreLines: List<BingoScoreLine>,
@@ -117,14 +119,14 @@ fun main() {
     fun part2(input: List<String>) =
         input.getBingoGame().scoreLastWin()
 
-    val testInput = readInput("Day04_test")
+    val testInput = readFileContents("Day04_test")
     val part1Result = part1(testInput)
     check(part1Result == 4512) { "Expected: 4512 but found $part1Result" }
 
     val part2Result = part2(testInput)
     check(part2Result == 1924) { "Expected 1924 but is: $part2Result" }
 
-    val input = readInput("Day04")
+    val input = readFileContents("Day04")
     println("Part1: " + part1(input))
     println("Part2: " + part2(input))
 }

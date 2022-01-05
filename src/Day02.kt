@@ -34,14 +34,14 @@ fun main() {
         }.total()
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day02_test")
+    val testInput = readFileContents("Day02_test")
     val part1Result = part1(testInput)
     check(part1Result == 150, {"Expected: 150 but found $part1Result"})
 
     val part2Result = part2(testInput)
     check(part2Result == 900, { "Expected 900 but is: $part2Result"})
 
-    val input = readInput("Day02")
+    val input = readFileContents("Day02")
     println("Part1: " + part1(input))
     println("Part2: " + part2(input))
 }
